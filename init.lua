@@ -160,6 +160,14 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
+-- Automatically enter insert mode when entering a terminal buffer
+vim.api.nvim_create_autocmd({ 'TermOpen', 'BufWinEnter' }, {
+  pattern = 'term://*',
+  callback = function()
+    vim.cmd 'startinsert!'
+  end,
+})
+
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
